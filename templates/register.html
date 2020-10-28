@@ -1,0 +1,51 @@
+<!doctype html>
+<html>
+	<head>
+		<link rel="stylesheet" href='/static/main.css' />
+		<script src="/static/script.js" defer></script>
+	</head>
+	<body>
+		<header>
+			Deliverman - Patryk Nowacki	
+		</header>
+		<nav>
+			<ul>
+			<li><a href="http://localhost:5000/">Strona główna</a></li>
+			<li><a href="http://localhost:5000/sender/sign-up">Zarejestruj</a></li>
+			</ul>
+		</nav>
+		<form method="POST" action="https://infinite-hamlet-29399.herokuapp.com/sender/register" enctype="multipart/form-data">
+			<ul>
+				<li>
+					<input type="text" id="fname" name="firstname" placeholder="Imie">
+				</li>
+				<li>
+					<input type="text" id="lname" name="lastname" placeholder="Nazwisko"><label>grgrgr</label>
+	
+				</li>
+				<li>
+					<label><input type="radio" name="sex" value="M"> Mezczyzna</label>
+					<label><input type="radio" name="sex" value="K"> Kobieta</label>
+				</li>
+				<li>
+					<input type="text" id="uname" name="login" placeholder="Nazwa uzytkownika">
+				</li>
+				<li>
+					<input type="password" id="pass" name="password" placeholder="Haslo">
+				</li>
+				<li>
+					<input type="password" id="pass2" name="password2" placeholder="Powtorne haslo">
+				</li>
+				<li>
+					<input type="file" id="img" name="photo">
+				</li>
+				<li>
+					<input type="submit" id="submit" name="submit">
+				</li>
+			</ul>
+		</form>
+		<footer>
+			2020 - repo
+		</footer>
+	</body>
+</html>
