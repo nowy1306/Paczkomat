@@ -2,7 +2,8 @@
 var prevent = false;
 var info = document.createElement("p");
 info.classList.add("invalid_info");
-var form = document.forms[0];
+//var form = document.forms[0];
+var form = document.getElementById("form_list")
 
 function attach_events() 
 {

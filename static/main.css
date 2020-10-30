@@ -3,7 +3,7 @@ nav ul {
   margin: 0;
   padding: 0;
   overflow: hidden;
-  background: #BC9D9D;
+  background: #A8A8A8;
   border: 1px solid #000000;
   box-sizing: border-box;
   border-radius: 0px;
@@ -44,7 +44,7 @@ nav li a {
 
 
 nav li a:hover {
-  background-color: #A98E8E;
+  background-color: #929292;
 }
 
 body {
@@ -75,6 +75,7 @@ form input[type=submit] {
 
 .invalid_info {
 	color: red;
+	padding-left: 10px;
 }
 
 .invalid_form {
