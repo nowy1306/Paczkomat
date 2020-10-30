@@ -3,62 +3,87 @@ nav ul {
   margin: 0;
   padding: 0;
   overflow: hidden;
-  background-color: #222;
+  background: #BC9D9D;
+  border: 1px solid #000000;
+  box-sizing: border-box;
+  border-radius: 0px;
+  font-family: Overpass;
+  font-weight: bold;
+  border-radius: 10px;
 }
 
 nav li {
   float: left;
 }
 
+footer ul {
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+  font-family: Overpass;
+  
+}
+
+body header {
+	font-family: Overpass;
+}
+
+
+footer li a{
+  float: left;
+  padding-right: 5px;
+}
+
 nav li a {
   display: block;
-  color: white;
   text-align: center;
   padding: 14px 16px;
   text-decoration: none;
+  color: black;
 }
 
-/* Change the link color to #111 (black) on hover */
+
 nav li a:hover {
-  background-color: #111;
+  background-color: #A98E8E;
 }
 
 body {
-	background-color: #A6A6A6;
+	background-color: #FFF6F6;
 }
 
 form ul {
   list-style-type: none;
 }
 
+form li {
+	padding: 10px;
+}
+
 
 form input {
-	background-color: #DDDDDD;
-	border-width: 0;
+	background: #FFFFFF;
+	border: 2px solid #000000;
+	border-radius: 10px;
+}
+
+form input[type=submit] {
+	background: #D8D0C5;
 }
 
 
-.valid_form {
-	color: black;
-	background-color: green;
-}
 
-.invalid_form {
-	color: black;
-	background-color: red;
-}
 
 .invalid_info {
 	color: red;
 }
 
 .invalid_form {
-	background-color: red;
+	background-color: #FF7A7A;
 	color = black;
 }
 
 .valid_form {
-	background-color: green;
+	background-color: #B2FFB2;
 	color = black;
 }
 
