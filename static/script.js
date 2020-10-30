@@ -2,8 +2,13 @@
 var prevent = false;
 var info = document.createElement("p");
 info.classList.add("invalid_info");
-//var form = document.forms[0];
-var form = document.getElementById("form_list")
+var form = document.getElementById("form_list");
+var prevent_map = {};
+prevent_map.firstname = false;
+prevent_map.lastname = false;
+prevent_map.username = false;
+prevent_map.passwd = false;
+prevent_map.passwd2 = false;
 
 function attach_events() 
 {
@@ -20,7 +25,7 @@ function attach_events()
 		var passwd = document.getElementById("pass").value;
 		var passwd2 = document.getElementById("pass2").value;
 		var sex = document.getElementById("")
-		if (prevent || 
+		if (check_prevent_map(prevent_map) || 
 			firstname == "" || 
 			lastname == "" || 
 			username == "" || 
@@ -54,10 +59,8 @@ function is_username_valid_listener()
 					var regex = RegExp('^[a-z]{3,12}$');
 					if(json[value] == "available" && regex.test(value))
 					{
-						//x.style.backgroundColor = "green";
-						//x.style.fontcolor = "black";
 						x.className = "valid_form";
-						prevent = false;
+						prevent_map["username"] = false;
 						if(form.contains(info))
 						{
 							form.removeChild(info)
@@ -67,10 +70,8 @@ function is_username_valid_listener()
 					}
 					else
 					{
-						//x.style.backgroundColor = "red";
-						//x.style.fontcolor = "black";
 						x.className = "invalid_form";
-						prevent = true;
+						prevent_map["username"] = true;
 						info.innerText = "Podana nazwa uzytkownika juz istnieje lub jest nieprawidlowa";
 						form.appendChild(info)
 					}
@@ -94,10 +95,8 @@ function is_firstname_valid_listener()
 		var regex = RegExp('^[A-Z][a-z]*$');
 		if(regex.test(text) && text.length >= 2)
 		{
-			//x.style.backgroundColor = "green";
-			//x.style.fontcolor = "black";
 			x.className = "valid_form";
-			prevent = false;
+			prevent_map["firstname"] = false;
 			if(form.contains(info))
 			{
 				form.removeChild(info)
@@ -105,10 +104,8 @@ function is_firstname_valid_listener()
 		}
 		else
 		{
-			//x.style.backgroundColor = "red";
-			//x.style.fontcolor = "black";
 			x.className = "invalid_form";
-			prevent = true;
+			prevent_map["firstname"] = true;
 			info.innerText = "Podane imie jest nieprawidlowe";
 			form.appendChild(info)
 		}
@@ -125,10 +122,8 @@ function is_lastname_valid_listener()
 		var regex = RegExp('^[A-Z][a-z]*$');
 		if(regex.test(text) && text.length >= 2)
 		{
-			//x.style.backgroundColor = "green";
-			//x.style.fontcolor = "black";
 			x.className = "valid_form";
-			prevent = false;
+			prevent_map["lastname"] = false;
 			if(form.contains(info))
 			{
 				form.removeChild(info)
@@ -136,10 +131,8 @@ function is_lastname_valid_listener()
 		}
 		else
 		{
-			//x.style.backgroundColor = "red";
-			//x.style.fontcolor = "black";
 			x.className = "invalid_form";
-			prevent = true;
+			prevent_map["lastname"] = true;
 			info.innerText = "Podane nazwisko jest nieprawidlowe";
 			form.appendChild(info)
 		}
@@ -163,10 +156,8 @@ function is_password_valid_listener()
 		{
 			if(text_pass.length >= 8)
 			{
-				//pass.style.backgroundColor = "green";
-				//pass.style.fontcolor = "black";
 				pass.className = "valid_form";
-				prevent = false;
+				prevent_map["passwd"] = false;
 				if(form.contains(info))
 				{
 					form.removeChild(info)
@@ -174,10 +165,8 @@ function is_password_valid_listener()
 			}
 			else
 			{
-				//pass.style.backgroundColor = "red";
-				//pass.style.fontcolor = "black";
 				pass.className = "invalid_form";
-				prevent = true;
+				prevent_map["passwd"] = true;
 				info.innerText = "Haslo musi zawierac min 8 znakow";
 				form.appendChild(info)
 			}
@@ -186,13 +175,10 @@ function is_password_valid_listener()
 		{
 			if(text_pass == text_pass2 && text_pass.length >= 8)
 			{
-				//pass.style.backgroundColor = "green";
-				//pass.style.fontcolor = "black";
-				//pass2.style.backgroundColor = "green";
-				//pass2.style.fontcolor = "black";
 				pass.className = "valid_form";
 				pass2.className = "valid_form";
-				prevent = false;
+				prevent_map["passwd"] = false;
+				prevent_map["passwd2"] = false;
 				if(form.contains(info))
 				{
 					form.removeChild(info)
@@ -200,13 +186,10 @@ function is_password_valid_listener()
 			}
 			else
 			{
-				//pass.style.backgroundColor = "red";
-				//pass.style.fontcolor = "black";
-				//pass2.style.backgroundColor = "red";
-				//pass2.style.fontcolor = "black";
 				pass.className = "invalid_form";
 				pass2.className = "invalid_form";
-				prevent = true;
+				prevent_map["passwd"] = true;
+				prevent_map["passwd2"] = true;
 				info.innerText = "Hasla musza byc rowne i zawierac min 8 znakow";
 				form.appendChild(info)
 			}
@@ -221,13 +204,10 @@ function is_password_valid_listener()
 		var text_pass2 = pass2.value
 		if(text_pass == text_pass2 && text_pass2.length >= 8)
 		{
-			//pass.style.backgroundColor = "green";
-			//pass.style.fontcolor = "black";
-			//pass2.style.backgroundColor = "green";
-			//pass2.style.fontcolor = "black";
 			pass.className = "valid_form";
 			pass2.className = "valid_form";
-			prevent = false;
+			prevent_map["passwd"] = false;
+			prevent_map["passwd2"] = false;
 			if(form.contains(info))
 			{
 				form.removeChild(info)
@@ -235,17 +215,24 @@ function is_password_valid_listener()
 		}
 		else
 		{
-			//pass.style.backgroundColor = "red";
-			//pass.style.fontcolor = "black";
-			//pass2.style.backgroundColor = "red";
-			//pass2.style.fontcolor = "black";
 			pass.className = "invalid_form";
 			pass2.className = "invalid_form";
-			prevent = true;
+			prevent_map["passwd"] = true;
+			prevent_map["passwd2"] = true;
 			info.innerText = "Hasla musza byc rowne i zawierac min 8 znakow";
 			form.appendChild(info)
 		}
 	}
+}
+
+function check_prevent_map(map)
+{
+	for (var key in map)
+	{
+		if(map[key] == true)
+			return true;
+	};
+	return false;
 }
 
 
