@@ -52,5 +52,15 @@ form input {
 	color: red;
 }
 
+.invalid_form {
+	background-color: red;
+	color = black;
+}
+
+.valid_form {
+	background-color: green;
+	color = black;
+}
+
 
 
