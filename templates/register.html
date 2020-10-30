@@ -14,7 +14,7 @@
 			<li><a href="/sender/sign-up">Zarejestruj</a></li>
 			</ul>
 		</nav>
-		<form method="POST" action="https://infinite-hamlet-29399.herokuapp.com/sender/register" enctype="multipart/form-data">
+		<form id="form" method="POST" action="https://infinite-hamlet-29399.herokuapp.com/sender/register" enctype="multipart/form-data">
 			<ul>
 				<li>
 					<input type="text" id="fname" name="firstname" placeholder="Imie">
@@ -23,7 +23,7 @@
 					<input type="text" id="lname" name="lastname" placeholder="Nazwisko">
 				</li>
 				<li>
-					<label><input type="radio" name="sex" value="M"> Mezczyzna</label>
+					<label><input type="radio" name="sex" value="M" checked> Mezczyzna</label>
 					<label><input type="radio" name="sex" value="K"> Kobieta</label>
 				</li>
 				<li>

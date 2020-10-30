@@ -37,8 +37,20 @@ form input {
 	border-width: 0;
 }
 
-.invalid {
-	background-color: "red";
+
+.valid_form {
+	color: black;
+	background-color: green;
 }
+
+.invalid_form {
+	color: black;
+	background-color: red;
+}
+
+.invalid_info {
+	color: red;
+}
+
 
 

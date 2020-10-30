@@ -1,9 +1,33 @@
+
+var prevent = false;
+var info = document.createElement("p");
+info.classList.add("invalid_info");
+var form = document.forms[0];
+
 function attach_events() 
 {
 	is_username_valid_listener();
 	is_firstname_valid_listener();
 	is_lastname_valid_listener();
 	is_password_valid_listener();
+	
+	
+	var submit = document.getElementById("submit").addEventListener("click", (ev) => {
+		var firstname = document.getElementById("fname").value;
+		var lastname = document.getElementById("lname").value;
+		var username = document.getElementById("uname").value;
+		var passwd = document.getElementById("pass").value;
+		var passwd2 = document.getElementById("pass2").value;
+		if (prevent || 
+			firstname == "" || 
+			lastname == "" || 
+			username == "" || 
+			passwd == ""|| 
+			passwd2 == "")
+		{
+			ev.preventDefault();
+		}
+	});
 }
 
 function is_username_valid_listener()
@@ -25,15 +49,25 @@ function is_username_valid_listener()
 				if (xhr.status == OK) 
 				{
 					var json = JSON.parse(xhr.responseText)
-					if(json[value] == "available" && value.length > 3)
+					if(json[value] == "available" && value.length >= 3)
 					{
 						x.style.backgroundColor = "green";
-						x.style.fontcolor = "black"
+						x.style.fontcolor = "black";
+						prevent = false;
+						if(form.contains(info))
+						{
+							form.removeChild(info)
+						}
+						
+						
 					}
 					else
 					{
 						x.style.backgroundColor = "red";
-						x.style.fontcolor = "black"
+						x.style.fontcolor = "black";
+						prevent = true;
+						info.innerText = "Podana nazwa uzytkownika juz istnieje";
+						form.appendChild(info)
 					}
 				} else 
 				{
@@ -56,12 +90,20 @@ function is_firstname_valid_listener()
 		if(regex.test(text) && text.length >= 2)
 		{
 			x.style.backgroundColor = "green";
-			x.style.fontcolor = "black"
+			x.style.fontcolor = "black";
+			prevent = false;
+			if(form.contains(info))
+			{
+				form.removeChild(info)
+			}
 		}
 		else
 		{
 			x.style.backgroundColor = "red";
-			x.style.fontcolor = "black"
+			x.style.fontcolor = "black";
+			prevent = true;
+			info.innerText = "Podane imie jest nieprawidlowe";
+			form.appendChild(info)
 		}
 	});
 }
@@ -77,12 +119,20 @@ function is_lastname_valid_listener()
 		if(regex.test(text) && text.length >= 2)
 		{
 			x.style.backgroundColor = "green";
-			x.style.fontcolor = "black"
+			x.style.fontcolor = "black";
+			prevent = false;
+			if(form.contains(info))
+			{
+				form.removeChild(info)
+			}
 		}
 		else
 		{
 			x.style.backgroundColor = "red";
-			x.style.fontcolor = "black"
+			x.style.fontcolor = "black";
+			prevent = true;
+			info.innerText = "Podane nazwisko jest nieprawidlowe";
+			form.appendChild(info)
 		}
 	});
 }
@@ -94,23 +144,31 @@ function is_password_valid_listener()
 	passwd.addEventListener("change", pass_listener)
 	passwd2.addEventListener("change", pass2_listener)
 	
-	function pass_listener()
+	function pass_listener(ev)
 	{
 		var pass = document.getElementById("pass")
 		var pass2 = document.getElementById("pass2")
-		var text_pass = pass.value
+		var text_pass = pass.value;
 		var text_pass2 = pass2.value
 		if(text_pass2 == "")
 		{
 			if(text_pass.length >= 8)
 			{
 				pass.style.backgroundColor = "green";
-				pass.style.fontcolor = "black"
+				pass.style.fontcolor = "black";
+				prevent = false;
+				if(form.contains(info))
+				{
+					form.removeChild(info)
+				}
 			}
 			else
 			{
 				pass.style.backgroundColor = "red";
-				pass.style.fontcolor = "black"
+				pass.style.fontcolor = "black";
+				prevent = true;
+				info.innerText = "Haslo musi zawierac min 8 znakow";
+				form.appendChild(info)
 			}
 		}
 		else
@@ -118,16 +176,24 @@ function is_password_valid_listener()
 			if(text_pass == text_pass2 && text_pass.length >= 8)
 			{
 				pass.style.backgroundColor = "green";
-				pass.style.fontcolor = "black"
+				pass.style.fontcolor = "black";
 				pass2.style.backgroundColor = "green";
-				pass2.style.fontcolor = "black"
+				pass2.style.fontcolor = "black";
+				prevent = false;
+				if(form.contains(info))
+				{
+					form.removeChild(info)
+				}
 			}
 			else
 			{
 				pass.style.backgroundColor = "red";
-				pass.style.fontcolor = "black"
+				pass.style.fontcolor = "black";
 				pass2.style.backgroundColor = "red";
-				pass2.style.fontcolor = "black"
+				pass2.style.fontcolor = "black";
+				prevent = true;
+				info.innerText = "Hasla musza byc rowne i zawierac min 8 znakow";
+				form.appendChild(info)
 			}
 		}
 	}
@@ -141,16 +207,24 @@ function is_password_valid_listener()
 		if(text_pass == text_pass2 && text_pass2.length >= 8)
 		{
 			pass.style.backgroundColor = "green";
-			pass.style.fontcolor = "black"
+			pass.style.fontcolor = "black";
 			pass2.style.backgroundColor = "green";
-			pass2.style.fontcolor = "black"
+			pass2.style.fontcolor = "black";
+			prevent = false;
+			if(form.contains(info))
+			{
+				form.removeChild(info)
+			}
 		}
 		else
 		{
 			pass.style.backgroundColor = "red";
-			pass.style.fontcolor = "black"
+			pass.style.fontcolor = "black";
 			pass2.style.backgroundColor = "red";
-			pass2.style.fontcolor = "black"
+			pass2.style.fontcolor = "black";
+			prevent = true;
+			info.innerText = "Hasla musza byc rowne i zawierac min 8 znakow";
+			form.appendChild(info)
 		}
 	}
 }
